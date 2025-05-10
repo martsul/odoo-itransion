@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: odoo
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: HOST
+        value: db
+      - key: USER
+        value: odoo
+      - key: PASSWORD
+        value: odoo
+    autoDeploy: true
+
+  - type: pserv
+    name: db
+    env: docker
+    plan: free
+    dockerfilePath: ./db.Dockerfile

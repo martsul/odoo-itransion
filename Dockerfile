@@ -5,4 +5,4 @@ COPY ./addons /mnt/extra-addons
 
 EXPOSE 8069
 
-CMD ["odoo", "-c", "/etc/odoo/odoo.conf", "-i", "base,form_viewer"]
+CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]

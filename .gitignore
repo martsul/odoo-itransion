@@ -11,9 +11,6 @@ __pycache__/
 odoo-data/
 *.db
 
-# Ignore config if it's sensitive
-*.conf
-
 # Ignore system files
 .DS_Store
 Thumbs.db

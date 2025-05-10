@@ -1,6 +1,5 @@
 FROM odoo:17
 
-COPY ./addons /mnt/extra-addons
 COPY ./odoo.conf /etc/odoo/odoo.conf
 
-CMD ["odoo", "--db_host=${DB_HOST}", "--db_port=${DB_PORT}", "--db_user=${DB_USER}", "--db_password=${DB_PASSWORD}", "--config=/etc/odoo/odoo.conf"]
+COPY ./addons /mnt/extra-addons

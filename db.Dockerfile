@@ -1,5 +1,0 @@
-FROM postgres:13
-
-ENV POSTGRES_USER=odoo
-ENV POSTGRES_PASSWORD=odoo
-ENV POSTGRES_DB=postgres

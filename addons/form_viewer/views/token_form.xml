@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="token_template" name="Token Form Template">
+        <t t-name="form_viewer.token_template">
+            <t t-if="submitted">
+                <h2>Token submitted:</h2>
+                <p><strong><t t-esc="token"/></strong></p>
+                <a href="/token_form">Submit another</a>
+            </t>
+            <t t-else="">
+                <h2>Enter your API token</h2>
+                <form action="/submit_token" method="post">
+                    <input type="text" name="token" placeholder="Enter your API key" required="required"/>
+                    <button type="submit">Submit</button>
+                </form>
+            </t>
+        </t>
+    </template>
+</odoo>

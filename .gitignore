@@ -1,0 +1,23 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore logs and compiled files
+*.log
+*.swp
+*.tmp
+
+# Ignore Odoo data
+odoo-data/
+*.db
+
+# Ignore config if it's sensitive
+*.conf
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Docker volumes (optional, only if you don’t want DB data tracked)
+volumes/
+.env

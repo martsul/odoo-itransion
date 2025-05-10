@@ -1,0 +1,48 @@
+<odoo>
+  <record id="view_survey_template_form" model="ir.ui.view">
+    <field name="name">survey.template.form</field>
+    <field name="model">survey.template</field>
+    <field name="arch" type="xml">
+      <form string="Survey Template">
+        <sheet>
+          <group>
+            <field name="author"/>
+            <field name="title"/>
+          </group>
+          <notebook>
+            <page string="Questions">
+              <field name="questions">
+                <tree editable="bottom">
+                  <field name="text"/>
+                  <field name="type"/>
+                  <field name="num_answers"/>
+                  <field name="avg"/>
+                  <field name="min"/>
+                  <field name="max"/>
+                  <field name="top_answers"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_survey_template_tree" model="ir.ui.view">
+    <field name="name">survey.template.tree</field>
+    <field name="model">survey.template</field>
+    <field name="arch" type="xml">
+      <tree string="Survey Templates">
+        <field name="title"/>
+        <field name="author"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="action_survey_template" model="ir.actions.act_window">
+    <field name="name">Survey Templates</field>
+    <field name="res_model">survey.template</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+</odoo>

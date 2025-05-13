@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Tools',
     'summary': 'Allows users to input and view an API key',
-    'depends': ['base', 'web'],
+    'depends': ['base'],
     'data': [
         'views/token_form.xml',
     ],

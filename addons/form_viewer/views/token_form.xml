@@ -2,111 +2,112 @@
 <odoo>
     <template id="token_template" name="Token Form Template">
         <t t-name="form_viewer.token_template">
-            <t t-call="website.layout">
-                <t t-set="title">Token Form</t>
-                <t t-set="bootstrap" t-value="1" />
-                <div class="container">
-                    <t t-if="submitted">
-                        <h1 class="text-center my-3">Completed forms</h1>
-                        <t t-if="data.get('error')">
-                            <div class="alert alert-danger">
-                                <h5 class="w-100 overflow-hidden">
-                                    <t t-esc="token" />
-                                </h5>
-                                <p class="mb-0">
-                                    <strong>Error:</strong>
-                                    <t t-esc="data['error']" />
-                                </p>
-                            </div>
-                        </t>
-                        <t t-else="">
-                            <div class="alert alert-success" role="alert">
-                                <h5 class="w-100 overflow-hidden">
-                                    <t t-esc="token" />
-                                </h5>
-                            </div>
-                        </t>
-                        <div class="w-100 mb-3">
-                            <a class="btn btn-primary w-100" href="/token_form">Submit another token</a>
+            <div
+                style="width: 100%; max-width: 800px; margin: 0 auto; padding: 16px; box-sizing: border-box;">
+                <t t-if="submitted">
+                    <h1 style="text-align: center; margin-bottom: 24px;">Completed forms</h1>
+                    <t t-if="data.get('error')">
+                        <div
+                            style="background-color: #f8d7da; padding: 16px; border-radius: 6px; color: #842029; margin-bottom: 16px;">
+                            <h5 style="overflow-wrap: break-word;">
+                                <t t-esc="token" />
+                            </h5>
+                            <p style="margin: 0;">
+                                <strong>Error:</strong>
+                                <t t-esc="data['error']" />
+                            </p>
                         </div>
-                        <t t-if="data.get('data')">
-                            <div class="accordion my-4" id="surveyAccordion">
-                                <t t-set="idx" t-value="0" />
-                                <t t-foreach="data['data']" t-as="survey">
-                                    <t t-set="idx" t-value="idx + 1" />
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header"
-                                            t-att-id="'heading_' + str(idx)">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                t-att-data-bs-target="'#collapse_' + str(idx)"
-                                                aria-expanded="false"
-                                                t-att-aria-controls="'collapse_' + str(idx)">
-                                                <t t-esc="survey['title']" /> – <small>
-                                                    <t t-esc="survey['ownerName']" />
-                                                </small>
-                                            </button>
-                                        </h2>
-                                        <div class="accordion-collapse collapse"
-                                            t-att-id="'collapse_' + str(idx)"
-                                            t-att-aria-labelledby="'heading_' + str(idx)"
-                                            data-bs-parent="#surveyAccordion">
-                                            <div class="accordion-body">
-                                                <t t-foreach="survey['questions']" t-as="question">
-                                                    <div class="mb-3">
-                                                        <h5>
-                                                            <t t-esc="question['title']" />
-                                                        </h5>
-                                                        <p><strong>Type:</strong> <t
-                                                                t-esc="question['type']" /> | <strong>
-                                                            Answers:</strong> <t
-                                                                t-esc="question['answerCount']" /></p>
-                                                        <t t-if="question['type'] == 'number'">
-                                                            <ul>
-                                                                <li>Min: <t
-                                                                        t-esc="question['answers']['min']" /></li>
-                                                                <li>Max: <t
-                                                                        t-esc="question['answers']['max']" /></li>
-                                                                <li>Average: <t
-                                                                        t-esc="question['answers']['average']" /></li>
-                                                            </ul>
-                                                        </t>
-                                                        <t
-                                                            t-elif="question['type'] in ['line', 'checkbox', 'paragraph']">
-                                                            <h6>Most popular</h6>
-                                                            <ul>
-                                                                <t t-foreach="question['answers']"
-                                                                    t-as="ans">
-                                                                    <li><strong>
-                                                                            <t t-esc="ans['count']" />
-                                                                        </strong>
-                                                                        – <t t-esc="ans['answer']" /></li>
-                                                                </t>
-                                                            </ul>
-                                                        </t>
-                                                    </div>
-                                                    <hr />
-                                                </t>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </t>
-                            </div>
-                        </t>
                     </t>
                     <t t-else="">
-                        <h1 class="text-center my-3">Enter your API token</h1>
-                        <form action="/submit_token" method="post">
-                            <div class="d-flex flex-column gap-3">
-                                <input class="form-control" type="text" name="token"
-                                    placeholder="Enter your API key"
-                                    required="required" />
-                                <button class="btn btn-primary" type="submit">Submit</button>
-                            </div>
-                        </form>
+                        <div
+                            style="background-color: #d1e7dd; padding: 16px; border-radius: 6px; color: #0f5132; margin-bottom: 16px;">
+                            <h5 style="overflow-wrap: break-word;">
+                                <t t-esc="token" />
+                            </h5>
+                        </div>
                     </t>
-                </div>
-            </t>
+                    <div style="margin-bottom: 24px;">
+                        <a href="/token_form"
+                            style="display: block; width: 100%; padding: 12px; background-color: #0d6efd; color: white; text-align: center; text-decoration: none; border-radius: 4px;">Submit
+                            another token</a>
+                    </div>
+                    <t t-if="data.get('data')">
+                        <div style="margin-top: 24px;">
+                            <t t-set="idx" t-value="0" />
+                            <t t-foreach="data['data']" t-as="survey">
+                                <t t-set="idx" t-value="idx + 1" />
+                                <div
+                                    style="border: 1px solid #ccc; border-radius: 4px; margin-bottom: 16px;">
+                                    <div
+                                        style="background-color: #f8f9fa; padding: 12px; cursor: pointer;"
+                                        t-attf-onclick="document.getElementById('collapse_{{idx}}').classList.toggle('hidden')">
+                                        <strong>
+                                            <t t-esc="survey['title']" />
+                                        </strong>
+                                        – <small>
+                                            <t t-esc="survey['ownerName']" />
+                                        </small>
+                                    </div>
+                                    <div t-att-id="'collapse_' + str(idx)" class="hidden"
+                                        style="padding: 12px;">
+                                        <t t-foreach="survey['questions']" t-as="question">
+                                            <div style="margin-bottom: 16px;">
+                                                <h5>
+                                                    <t t-esc="question['title']" />
+                                                </h5>
+                                                <p style="margin: 4px 0;">
+                                                    <strong>Type:</strong> <t
+                                                        t-esc="question['type']" /> | <strong>
+                                                    Answers:</strong> <t
+                                                        t-esc="question['answerCount']" />
+                                                </p>
+                                                <t t-if="question['type'] == 'number'">
+                                                    <ul style="padding-left: 20px;">
+                                                        <li>Min: <t
+                                                                t-esc="question['answers']['min']" /></li>
+                                                        <li>Max: <t
+                                                                t-esc="question['answers']['max']" /></li>
+                                                        <li>Average: <t
+                                                                t-esc="question['answers']['average']" /></li>
+                                                    </ul>
+                                                </t>
+                                                <t
+                                                    t-elif="question['type'] in ['line', 'checkbox', 'paragraph']">
+                                                    <h6 style="margin: 8px 0;">Most popular</h6>
+                                                    <ul style="padding-left: 20px;">
+                                                        <t t-foreach="question['answers']"
+                                                            t-as="ans">
+                                                            <li><strong>
+                                                                    <t t-esc="ans['count']" />
+                                                                </strong>
+                                                                – <t t-esc="ans['answer']" /></li>
+                                                        </t>
+                                                    </ul>
+                                                </t>
+                                            </div>
+                                            <hr style="margin: 16px 0;" />
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+                <t t-else="">
+                    <h1 style="text-align: center; margin-bottom: 24px;">Enter your API token</h1>
+                    <form action="/submit_token" method="post">
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <input class="form-control" type="text" name="token"
+                                placeholder="Enter your API key"
+                                required="required"
+                                style="padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;" />
+                            <button type="submit"
+                                style="padding: 12px; font-size: 16px; background-color: #0d6efd; color: white; border: none; border-radius: 4px;">
+                                Submit</button>
+                        </div>
+                    </form>
+                </t>
+            </div>
         </t>
     </template>
 </odoo>
